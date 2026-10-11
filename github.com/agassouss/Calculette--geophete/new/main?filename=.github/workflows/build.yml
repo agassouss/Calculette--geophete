@@ -1,0 +1,17 @@
+[app]
+title = Calname: Build APK
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          workdir:.
+          buildozer_version: stable
+      - uses: actions/upload-artifact@v3
+        with:
+          name: apk
+          path: bin/*.apk
